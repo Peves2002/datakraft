@@ -1,7 +1,11 @@
 import * as React from 'react'
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
-import { AlumnoType } from 'src/types/alumno'
 import { MenuItem, Typography } from '@mui/material'
+import Stack from '@mui/material/Stack'
+import IconButton from '@mui/material/IconButton'
+
+// ** Type
+import { AlumnoType } from 'src/types/alumno'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -13,18 +17,14 @@ interface CellType {
 const RowAction = ({ id }: { id: number }) => {
   return (
     <>
-      <MenuItem sx={{ '& svg': { mr: 2 } }}>
-        <Icon icon='tabler:eye' fontSize={20} />
-        Ver
-      </MenuItem>
-      <MenuItem sx={{ '& svg': { mr: 2 } }}>
-        <Icon icon='tabler:edit' fontSize={20} />
-        Editar
-      </MenuItem>
-      <MenuItem sx={{ '& svg': { mr: 2 } }}>
-        <Icon icon='tabler:trash' fontSize={20} />
-        Eliminar
-      </MenuItem>
+      <Stack direction='row'>
+        <IconButton sx={{ color: 'primary.main' }}>
+          <Icon icon='tabler:edit' fontSize={20} />
+        </IconButton>
+        <IconButton sx={{ color: 'primary.main' }}>
+          <Icon icon='tabler:trash' fontSize={20} />
+        </IconButton>
+      </Stack>
     </>
   )
 }
@@ -33,8 +33,9 @@ const columns: GridColDef[] = [
   {
     field: 'dni',
     headerName: 'N° Documento',
-    flex: 0.18,
+    flex: 0.17,
     headerAlign: 'center',
+    align: 'center',
     renderCell: ({ row }: CellType) => {
       const { dni } = row
 
@@ -44,8 +45,9 @@ const columns: GridColDef[] = [
   {
     field: 'nombres',
     headerName: 'Nombres',
-    flex: 0.18,
+    flex: 0.17,
     headerAlign: 'center',
+    align: 'center',
     renderCell: ({ row }: CellType) => {
       const { nombre } = row
 
@@ -55,8 +57,9 @@ const columns: GridColDef[] = [
   {
     field: 'apellido_paterno',
     headerName: 'Apellido Paterno',
-    flex: 0.18,
+    flex: 0.17,
     headerAlign: 'center',
+    align: 'center',
     renderCell: ({ row }: CellType) => {
       const { apellido_paterno } = row
 
@@ -66,8 +69,9 @@ const columns: GridColDef[] = [
   {
     field: 'apellido_materno',
     headerName: 'Apellido Materno',
-    flex: 0.18,
+    flex: 0.17,
     headerAlign: 'center',
+    align: 'center',
     renderCell: ({ row }: CellType) => {
       const { apellido_materno } = row
 
@@ -77,8 +81,9 @@ const columns: GridColDef[] = [
   {
     field: 'telefono',
     headerName: 'Teléfono',
-    flex: 0.18,
+    flex: 0.17,
     headerAlign: 'center',
+    align: 'center',
     renderCell: ({ row }: CellType) => {
       const { telefono } = row
 
@@ -88,8 +93,9 @@ const columns: GridColDef[] = [
   {
     field: 'accion',
     headerName: 'Acción',
-    flex: 0.1,
+    flex: 0.15,
     headerAlign: 'center',
+    align: 'center',
     renderCell: ({ row }: CellType) => {
       const { id } = row
 
@@ -99,12 +105,12 @@ const columns: GridColDef[] = [
 ]
 
 const rows = [
-  { id: 1, nombres: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 'Peves' },
-  { id: 2, nombres: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 'Peves' },
-  { id: 3, nombres: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 'Peves' },
-  { id: 4, nombres: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 'Peves' },
-  { id: 5, nombres: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 'Peves' },
-  { id: 6, nombres: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 'Peves' }
+  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
+  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
+  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
+  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
+  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
+  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 }
 ]
 
 function TablaLista() {
