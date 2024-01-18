@@ -10,8 +10,9 @@ import CustomTextField from 'src/@core/components/mui/text-field'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
+import AgregarAlumno from './AgregarAlumno'
 
-const TablaEncabezado = ({ modulo, path }: { modulo: string; path: string }) => {
+const TablaEncabezado = () => {
   return (
     <Box
       sx={{
@@ -27,11 +28,8 @@ const TablaEncabezado = ({ modulo, path }: { modulo: string; path: string }) => 
         Exportar
       </Button>
       <Box sx={{ rowGap: 2, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
-        <CustomTextField sx={{ mr: 4 }} placeholder={`Buscar ${modulo}`} />
-        <Button variant='contained' sx={{ '& svg': { mr: 2 } }} component={Link} href={path}>
-          <Icon fontSize='1.125rem' icon='tabler:plus' />
-          {`Añadir ${modulo}`}
-        </Button>
+        <CustomTextField sx={{ mr: 4 }} placeholder={`Buscar Alumno`} />
+        <AgregarAlumno />
       </Box>
     </Box>
   )

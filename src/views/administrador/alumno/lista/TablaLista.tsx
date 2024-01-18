@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
-import { MenuItem, Typography } from '@mui/material'
+import { Box, Button, Card, CardHeader, MenuItem, Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import IconButton from '@mui/material/IconButton'
+import Modal from '@mui/material/Modal'
 
 // ** Type
 import { AlumnoType } from 'src/types/alumno'
@@ -14,18 +15,62 @@ interface CellType {
   row: AlumnoType
 }
 
-const RowAction = ({ id }: { id: number }) => {
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+  alignItems: 'center',
+  textAlign: 'center'
+}
+
+const ColumnaAccion = ({ id }: { id: number }) => {
   return (
     <>
       <Stack direction='row'>
         <IconButton sx={{ color: 'primary.main' }}>
           <Icon icon='tabler:edit' fontSize={20} />
         </IconButton>
-        <IconButton sx={{ color: 'primary.main' }}>
-          <Icon icon='tabler:trash' fontSize={20} />
-        </IconButton>
+        <Eliminar />
       </Stack>
     </>
+  )
+}
+
+export const Eliminar = () => {
+  const [open, setOpen] = React.useState(false)
+  const handleOpenEliminar = () => setOpen(true)
+  const handleCloseEliminar = () => setOpen(false)
+
+  return (
+    <div>
+      <IconButton sx={{ color: 'primary.main' }} onClick={handleOpenEliminar}>
+        <Icon icon='tabler:trash' fontSize={20} />
+      </IconButton>
+      <Modal
+        open={open}
+        onClose={handleCloseEliminar}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
+      >
+        <Card sx={style}>
+          <CardHeader title='¿Está usted seguro de eliminar este alumno?' />
+          <Box sx={{ alignItems: 'center', textAlign: 'center' }}>
+            <Button type='submit' variant='contained' sx={{ mr: 3 }}>
+              Eliminar
+            </Button>
+            <Button variant='tonal' color='secondary' onClick={handleCloseEliminar}>
+              Cancelar
+            </Button>
+          </Box>
+        </Card>
+      </Modal>
+    </div>
   )
 }
 
@@ -99,18 +144,18 @@ const columns: GridColDef[] = [
     renderCell: ({ row }: CellType) => {
       const { id } = row
 
-      return <RowAction id={id} />
+      return <ColumnaAccion id={id} />
     }
   }
 ]
 
 const rows = [
   { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
-  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
-  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
-  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
-  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
-  { id: 1, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 }
+  { id: 2, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
+  { id: 3, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
+  { id: 4, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
+  { id: 5, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 },
+  { id: 6, dni: 76564395, nombre: 'Manuel', apellido_paterno: 'Peves', apellido_materno: 'Peves', telefono: 949992147 }
 ]
 
 function TablaLista() {
