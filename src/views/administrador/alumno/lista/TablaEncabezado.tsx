@@ -10,7 +10,8 @@ import CustomTextField from 'src/@core/components/mui/text-field'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
-import AgregarAlumno from './AgregarAlumno'
+import AgregarAlumno from './DrawerAccion'
+import DrawerAccion from './DrawerAccion'
 
 const TablaEncabezado = () => {
   return (
@@ -29,7 +30,7 @@ const TablaEncabezado = () => {
       </Button>
       <Box sx={{ rowGap: 2, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
         <CustomTextField sx={{ mr: 4 }} placeholder={`Buscar Alumno`} />
-        <AgregarAlumno />
+        <DrawerAccion accion={'Añadir'} />
       </Box>
     </Box>
   )

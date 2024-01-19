@@ -3,6 +3,8 @@ import Button from '@mui/material/Button'
 import { Drawer, IconButton, Typography } from '@mui/material'
 import Box, { BoxProps } from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -15,7 +17,8 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
   justifyContent: 'space-between'
 }))
 
-function AgregarAlumno() {
+function DrawerAccion({ accion }: { accion: string }) {
+  // Drawer
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
 
   const handleOpenDrawer = () => {
@@ -26,16 +29,26 @@ function AgregarAlumno() {
     setOpenDrawer(false)
   }
 
-  const añadirAlumno = (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault()
+  const BotonAccion = () => {
+    if (accion == 'Añadir') {
+      return (
+        <Button variant='contained' sx={{ '& svg': { mr: 2 } }} onClick={handleOpenDrawer}>
+          <Icon icon='ic:round-add' fontSize='1.125rem' />
+          Añadir
+        </Button>
+      )
+    } else {
+      return (
+        <IconButton sx={{ color: 'primary.main' }} onClick={handleOpenDrawer}>
+          <Icon icon='tabler:edit' fontSize={20} />
+        </IconButton>
+      )
+    }
   }
 
   return (
     <React.Fragment>
-      <Button variant='contained' sx={{ '& svg': { mr: 2 } }} onClick={handleOpenDrawer}>
-        <Icon icon='ic:round-add' fontSize='1.125rem' />
-        Añadir
-      </Button>
+      <BotonAccion />
       <Drawer
         anchor={'right'}
         open={openDrawer}
@@ -43,8 +56,7 @@ function AgregarAlumno() {
         sx={{ '& .MuiDrawer-paper': { width: { xs: 300, sm: 400 } } }}
       >
         <Header>
-          <Typography variant='h5'>Añadir Alumno</Typography>
-
+          <Typography variant='h5'>{accion} Alumno</Typography>
           <IconButton
             size='small'
             onClick={handleCloseDrawer}
@@ -83,4 +95,4 @@ function AgregarAlumno() {
   )
 }
 
-export default AgregarAlumno
+export default DrawerAccion

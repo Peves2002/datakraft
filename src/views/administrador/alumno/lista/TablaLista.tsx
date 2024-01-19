@@ -10,6 +10,7 @@ import { AlumnoType } from 'src/types/alumno'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
+import DrawerAccion from './DrawerAccion'
 
 interface CellType {
   row: AlumnoType
@@ -33,9 +34,7 @@ const ColumnaAccion = ({ id }: { id: number }) => {
   return (
     <>
       <Stack direction='row'>
-        <IconButton sx={{ color: 'primary.main' }}>
-          <Icon icon='tabler:edit' fontSize={20} />
-        </IconButton>
+        <DrawerAccion accion={'Editar'} />
         <Eliminar />
       </Stack>
     </>
