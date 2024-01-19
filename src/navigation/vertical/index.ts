@@ -25,7 +25,7 @@ const navigation = (): VerticalNavItemsType => {
         },
         {
           title: 'Reglamento',
-          path: '/administrador/invoice/reglamento'
+          path: '/administrador/reglamento'
         }
       ]
     },
